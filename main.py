@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 
 URL: str = ""  # 画像をDLするサイトURL
 DL_DIR: str = r""  # dl先rootディレクトリ
+IS_URL_TEXT_SAVE: bool = True
 
 
 class BsContllorer:
@@ -91,6 +92,11 @@ def main():
         return False
 
     bc.img_download(title_dir, bc.get_image_urls())
+
+    if IS_URL_TEXT_SAVE:
+        text_path: str = os.path.join(title_dir, "url.txt")
+        with open(text_path, "w", encoding="utf-8") as f:
+            f.write(URL)
 
     return True
 
