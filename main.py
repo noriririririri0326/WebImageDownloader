@@ -53,9 +53,17 @@ class BsContllorer:
 
         count: int = 0
 
-        for src in srcs:
+        for i, src in enumerate(srcs, 1):
             img = requests.get(src, stream=True, timeout=100)
+            
+            # ↓ファイル名どっちで保存するか。片方コメントアウトすること。
+            # 素のファイル名で保存。
             file_name: str = os.path.basename(src)
+            
+            #連番に変換して保存。
+            # _, ext = os.path.splitext(src)
+            # file_name: str = f"{i:03}{ext}"
+            
             save_path: str = os.path.join(title_dir, file_name)
 
             with open(save_path, "wb") as f:
